@@ -1,16 +1,20 @@
 import pygame, sys, os
 from pygame.locals import *
+from chess_logic import check_possible_moves, is_checkmate
 
 black = 0, 0, 0
 white = 255, 255, 255
 floralwhite = 255, 250, 240
 grey = 192, 192, 192
 ivory = 255,255,15
+limegreen = 50,205,50
 
 
 class Board:
     is_field_selected = False
     field_selected = 0, 0
+    possible_moves = []
+    checkmate = False
 
     def __init__(self, screen, board_size, field_board_size):
         self.screen = screen
@@ -142,11 +146,19 @@ class Board:
             self.field_selected = field
             self.draw_board_background()
             self.draw_field(self.field_selected, ivory)
+            for field in check_possible_moves(self.board, self.field_selected):
+                self.possible_moves.append(field)
+                self.draw_field(field, limegreen)
             self.draw_pieces()
         else:
-            self.move_piece(field)
+            if field in self.possible_moves:
+                self.move_piece(field)
+                checkmate = is_checkmate(self.board, self.board[field[0]][field[1]]>6)
+                if checkmate:
+                    print("CHECKMATE!")
             self.draw_board_background()
             self.draw_pieces()
+            self.possible_moves = []
         self.is_field_selected = not self.is_field_selected
 
     def move_piece(self, field):
