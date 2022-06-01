@@ -2,9 +2,9 @@
 Chess online game made with Python. Client-Server communication is realized with sockets (IPv4-TCP, flag+data format messages). "Offline" game made with pygame, chess logic is checked and server on server side, so no client manipulation (bad move etc.) is possible.
 
 # Example
-![game 1](game1.png?raw=true "Example")
-![game 2](game2.png?raw=true "Example")
-![game 3](game3.png?raw=true "Example")
+![game 1](game1.PNG?raw=true "Example")
+![game 2](game2.PNG?raw=true "Example")
+![game 3](game3.PNG?raw=true "Example")
 ## Technologies
 - PyGame - client-side game
 - socket - client-server communication
